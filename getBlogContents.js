@@ -12,19 +12,29 @@ location: {
 }
 */
 
-let getHost = (host) => {
+let getHost = (path = '') => {
   switch (true) {
-    case host.includes('ukepengen.no'): return 'no.gimitheapp.com'
-    case host.includes('gimitheapp.com'): return 'gimitheapp.com'
-    default: return 'veckopengen.se'
+    case path.includes('/blog/nb/'): return 'no.gimitheapp.com'
+    case path.includes('/blog/nn/'): return 'no.gimitheapp.com'
+    case path.includes('/blog/se/'): return 'veckopengen.se'
+    default: return 'gimitheapp.com'
   }
 }
 
-module.exports = (event = {body: '{}'}) => {
-  var {body} = event
-  var location = JSON.parse(body)
-  var host = location.host || 'veckopengen.se'
-  var pathname = location.pathname || '/aktuellt'
-  host = getHost(host)
-  return request(`http://${host}${pathname}`)
+let getPath = (path = '') => {
+  if (!path.startsWith('/blog/')) return 'news'
+  var splits = path.split('/')
+  splits.shift()
+  splits.shift()
+  splits.shift()
+  return splits.join('/')
+}
+
+let getBlogUrl = ({path} = {path: ''}) => `http://${getHost(path)}/${getPath(path)}`
+
+let getBlogContents = (event = {body: '{}'}) => request(getBlogUrl(event))
+
+module.exports = {
+  getBlogUrl,
+  getBlogContents
 }

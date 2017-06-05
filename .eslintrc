@@ -1,3 +1,13 @@
 {
-  "extends": "standard"
+  "extends": "standard",
+  "plugins": [
+    "jest"
+  ],
+
+  "globals": {
+    describe: false,
+    it: false,
+    expect: false,
+    xit: false
+  }
 }
