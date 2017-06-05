@@ -16,5 +16,5 @@ functions:
     events:
       - http:
           path: blog
-          method: post
+          method: get
           cors: true

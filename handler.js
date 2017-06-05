@@ -11,6 +11,10 @@ module.exports.hello = (event, context, callback) => {
     body: ''
   }
 
+  response.body = event
+  delete response.headers['Content-Type']
+  return callback(null, response)
+
   getBlogContents(event)
     .then((body) => {
       console.log(body)
