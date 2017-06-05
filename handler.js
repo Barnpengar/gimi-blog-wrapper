@@ -1,4 +1,3 @@
-'use strict'
 let getBlogContents = require('getBlogContents')
 
 module.exports.hello = (event, context, callback) => {
