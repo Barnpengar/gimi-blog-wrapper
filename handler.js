@@ -1,4 +1,4 @@
-let getBlogContents = require('getBlogContents')
+let getBlogContents = require('getBlogContents').getBlogContents
 
 module.exports.hello = (event, context, callback) => {
   let response = {
