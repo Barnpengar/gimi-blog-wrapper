@@ -20,10 +20,11 @@ let getHost = (host) => {
   }
 }
 
-module.exports = (location = {host: 'veckopengen.se', pathname: '/aktuellt'}) => {
-  var {pathname, host} = location
+module.exports = (event = {body: '{}'}) => {
+  var {body} = event
+  var location = JSON.parse(body)
+  var host = location.host || 'veckopengen.se'
+  var pathname = location.pathname || '/aktuellt'
   host = getHost(host)
   return request(`http://${host}${pathname}`)
 }
-
-// du ska skriva ett lätt test
