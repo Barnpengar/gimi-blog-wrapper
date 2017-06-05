@@ -9,7 +9,7 @@ provider:
   region: eu-west-1
 
 functions:
-  auth:
+  hello:
     handler: handler.hello
     memorySize: 128
     description: Get content from old wordpress blog

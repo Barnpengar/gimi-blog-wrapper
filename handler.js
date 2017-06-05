@@ -1,17 +1,27 @@
 'use strict'
 let getBlogContents = require('getBlogContents')
 
-let response = {
-  statusCode: 200,
-  headers: {
-    'Access-Control-Allow-Origin': '*', // Required for CORS support to work
-    'Access-Control-Allow-Credentials': true // Required for cookies, authorization headers with HTTPS
-  },
-  body: ''
-}
-
 module.exports.hello = (event, context, callback) => {
+  let response = {
+    statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*', // Required for CORS support to work
+      'Access-Control-Allow-Credentials': true, // Required for cookies, authorization headers with HTTPS
+      'Content-Type': 'text/html'
+    },
+    body: ''
+  }
+
   getBlogContents(event)
-    .then((body) => callback(null, {...response, body}))
-    .catch((e) => callback(null, {...response, statusCode: 500, body: e.toJSON()}))
+    .then((body) => {
+      console.log(body)
+      response.body = body
+      callback(null, response)
+    })
+    .catch((e) => {
+      console.error(e)
+      response.body = e.toJSON()
+      response.statusCode = 500
+      callback(null, response)
+    })
 }
