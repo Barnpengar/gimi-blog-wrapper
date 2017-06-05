@@ -5,16 +5,13 @@ module.exports.hello = (event, context, callback) => {
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*', // Required for CORS support to work
-      'Access-Control-Allow-Credentials': true, // Required for cookies, authorization headers with HTTPS
-      'Content-Type': 'text/html'
+      'Access-Control-Allow-Credentials': true // Required for cookies, authorization headers with HTTPS
+      // 'Content-Type': 'text/html'
     },
-    body: ''
+    body: JSON.stringify(event)
   }
-
-  response.body = event
-  delete response.headers['Content-Type']
   return callback(null, response)
-
+  /*
   getBlogContents(event)
     .then((body) => {
       console.log(body)
@@ -27,4 +24,5 @@ module.exports.hello = (event, context, callback) => {
       response.statusCode = 500
       callback(null, response)
     })
+    */
 }

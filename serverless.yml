@@ -15,6 +15,6 @@ functions:
     description: Get content from old wordpress blog
     events:
       - http:
-          path: blog
+          path: blog/{proxy+}
           method: get
           cors: true
