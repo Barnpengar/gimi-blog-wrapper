@@ -9,11 +9,7 @@ describe('getBlogContents', () => {
   })
 
   it('should get correct blog url', () => {
-    expect(getBlogUrl()).toEqual('http://gimitheapp.com/news')
-    expect(getBlogUrl({path: '/blog/se/aktuellt'})).toEqual('http://veckopengen.se/aktuellt')
-    expect(getBlogUrl({path: '/blog/se/whatever'})).toEqual('http://veckopengen.se/whatever')
-    expect(getBlogUrl({path: '/blog/fl/whatever'})).toEqual('http://gimitheapp.com/whatever')
-    expect(getBlogUrl({path: '/blog/en/news/six-steps-to-fewer-fights-between-siblings/'})).toEqual('http://gimitheapp.com/news/six-steps-to-fewer-fights-between-siblings/')
+    expect(getBlogUrl({path: '/blog/'})).toEqual('http://blog.gimitheapp.com/news')
+    expect(getBlogUrl({path: '/blog/mklfdlkmfd'})).toEqual('http://blog.gimitheapp.com/mklfdlkmfd')
   })
 })
-

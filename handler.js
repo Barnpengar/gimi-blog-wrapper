@@ -1,7 +1,6 @@
 let getBlogContents = require('getBlogContents').getBlogContents
 let getBlogUrl = require('getBlogContents').getBlogUrl
 
-
 module.exports.hello = (event, context, callback) => {
   let response = {
     statusCode: 200,

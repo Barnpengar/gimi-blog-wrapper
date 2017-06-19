@@ -13,19 +13,13 @@ location: {
 */
 
 let getHost = (path = '') => {
-  switch (true) {
-    case path.includes('/blog/nb/'): return 'no.gimitheapp.com'
-    case path.includes('/blog/nn/'): return 'no.gimitheapp.com'
-    case path.includes('/blog/se/'): return 'veckopengen.se'
-    default: return 'gimitheapp.com'
-  }
+  return 'blog.gimitheapp.com'
 }
 
 let getPath = (path = '') => {
   if (!path.startsWith('/blog/')) return 'news'
-  var splits = path.split('/')
-  splits.shift()
-  splits.shift()
+  if (path.endsWith('/blog/')) return 'news'
+  var splits = path.split('/blog/')
   splits.shift()
   return splits.join('/')
 }
